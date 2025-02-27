@@ -185,7 +185,7 @@ public class TreeProblems {
    * depth 1. If the tree is null, return 0.
    * Example:
    * For a tree structured as:
-   * A
+   *   A
    * / | \
    * B E C
    * | / \
@@ -197,7 +197,17 @@ public class TreeProblems {
    * 
    */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+    if (root == null) return 0;
+    if (root.children == null) return 1;
+
+    int largest = 0;
+    for (var child : root.children) {
+      if(maxDepth(child) > largest){
+        largest = maxDepth(child);
+      }
+    }
+    
+    return largest + 1;
   }
 
   /*
