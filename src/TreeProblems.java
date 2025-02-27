@@ -1,3 +1,4 @@
+
 import java.util.List;
 import java.util.Map;
 
@@ -75,23 +76,34 @@ public class TreeProblems {
 
   }
 
-  /*
-   sumTree (Node Version)
-   -----------
-   Given a tree built with the Node class (with integer values), compute and return the sum of all the node values.
-   Example:
-   If the tree is:
-          5
-       /  |  \
-      3   9   8
-        / | \  
-       4  1  2
-   then the method should return 32.
-   A null tree should return 0
-  */
+    /*
+    sumTree (Node Version)
+    -----------
+    Given a tree built with the Node class (with integer values), compute and return the sum of all the node values.
+    Example:
+    If the tree is:
+            5
+        /  |  \
+        3   9   8
+          / | \  
+        4  1  2
+    then the method should return 32.
+    A null tree should return 0
+    */
   public static int sumTree(Node<Integer> root) {
-    return -1;
+ 
+  if (root == null) return 0;
+
+  int sum = root.value;
+
+  if (root.children != null) {
+      for (Node<Integer> child : root.children) {
+          sum += sumTree(child); 
+      }
   }
+
+  return sum;
+}
 
   /*
    sumTree (Map Version)
@@ -113,8 +125,8 @@ public class TreeProblems {
    Hint: There's a simple way to do this!
   */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
-    return -1;
-  }
+
+
 
   /*
    findRoot
