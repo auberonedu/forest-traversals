@@ -100,7 +100,23 @@ public class TreeProblems {
    A null tree should return 0
   */
   public static int sumTree(Node<Integer> root) {
-    return -1;
+
+    if (root == null) {
+      return 0;
+    }
+
+    if (root.children.isEmpty()) {
+      return root.value;
+    }
+
+    int valueTracker = root.value;
+
+    for (var child : root.children) {
+      System.out.println(child.value);
+      valueTracker += sumTree(child);
+    }
+
+    return valueTracker;
   }
 
   /*
