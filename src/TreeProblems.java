@@ -36,7 +36,7 @@ public class TreeProblems {
     for (var child : root.children) {
       postOrder(child);
     }
-    
+
     System.out.println(root.value);
   }
 
@@ -65,7 +65,7 @@ public class TreeProblems {
    5
    */
   public static <T> void postOrder(Map<T, List<T>> tree, T root) {
-    if (tree == null || !tree.containsKey(root));
+    if (tree == null || !tree.containsKey(root)) return;
   
     List<T> children = tree.get(root);
 
