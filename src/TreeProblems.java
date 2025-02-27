@@ -70,6 +70,19 @@ public class TreeProblems {
    5
    */
   public static <T> void postOrder(Map<T, List<T>> tree, T root) {
+    // base case
+    if (root == null || tree == null || !tree.containsKey(root)) return;
+
+    // traverse
+    List<T> children = tree.get(root);
+
+    for( var child : children){
+      postOrder(tree, child);
+    }
+
+    // handle
+
+    System.out.println(root);
   }
 
   /*
