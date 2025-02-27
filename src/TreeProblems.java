@@ -64,6 +64,13 @@ public class TreeProblems {
    5
    */
   public static <T> void postOrder(Map<T, List<T>> tree, T root) {
+    if (tree == null || !tree.containsKey(root)) return;
+
+    List<T> treeChild = tree.get(root);
+    for (T child : treeChild) {
+      postOrder(tree, child);
+    }
+    System.out.println(root);
   }
 
   /*
