@@ -91,7 +91,20 @@ public class TreeProblems {
    * A null tree should return 0
    */
   public static int sumTree(Node<Integer> root) {
-    return -1;
+    if (root == null) return 0;
+    if (root.children == null) return sumTreeHelper(root);
+    return sumTreeHelper(root) ;
+  }
+
+  private static int sumTreeHelper(Node<Integer> root){
+    int sum = 0;
+    if (root == null) return 0;
+    if (root.children == null) return root.value;
+    for(var child: root.children){
+      sum += sumTreeHelper(child);
+    }
+    sum += root.value;
+    return sum;
   }
 
   /*
