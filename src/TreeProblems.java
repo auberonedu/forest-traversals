@@ -115,7 +115,13 @@ public class TreeProblems {
    Hint: There's a simple way to do this!
   */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
-    return -1;
+    if (tree == null) return 0;
+    int count = 0;
+
+    for (Map.Entry<Integer, List<Integer>> item : tree.entrySet()) {
+      count += item.getKey();
+    }
+    return count;
   }
 
   /*
