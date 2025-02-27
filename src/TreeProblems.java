@@ -130,13 +130,14 @@ public class TreeProblems {
    * Hint: There's a simple way to do this!
    */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
-    if (tree == null) return 0;
+    if (tree == null)
+      return 0;
 
     int count = 0;
-    for(var num: tree.keySet()){ 
+    for (var num : tree.keySet()) {
       count += num;
     }
-    
+
     return count;
   }
 
@@ -160,16 +161,16 @@ public class TreeProblems {
    * 
    * Hint: No recursion needed! Think about how you would do this by hand.
    */
-  public static <T> T findRoot(Map<T, List<T>> tree) { 
+  public static <T> T findRoot(Map<T, List<T>> tree) {
     Set<T> hashie = new HashSet<>();
 
     for (var values : tree.values()) {
-      for(var value: values){
+      for (var value : values) {
         hashie.add(value);
       }
     }
-    for (var key : tree.keySet()) { 
-      if(!hashie.contains(key)){
+    for (var key : tree.keySet()) {
+      if (!hashie.contains(key)) {
         return key;
       }
     }
@@ -185,7 +186,7 @@ public class TreeProblems {
    * depth 1. If the tree is null, return 0.
    * Example:
    * For a tree structured as:
-   *   A
+   * A
    * / | \
    * B E C
    * | / \
@@ -197,16 +198,18 @@ public class TreeProblems {
    * 
    */
   public static <T> int maxDepth(Node<T> root) {
-    if (root == null) return 0;
-    if (root.children == null) return 1;
+    if (root == null)
+      return 0;
+    if (root.children == null)
+      return 1;
 
     int largest = 0;
     for (var child : root.children) {
-      if(maxDepth(child) > largest){
+      if (maxDepth(child) > largest) {
         largest = maxDepth(child);
       }
     }
-    
+
     return largest + 1;
   }
 
@@ -231,6 +234,24 @@ public class TreeProblems {
    * Hint: Use findRoot to start. Then, make a recursive helper method.
    */
   public static int maxDepth(Map<String, List<String>> tree) {
-    return -1;
+    if (tree == null || tree.isEmpty())
+      return 0;
+
+    String root = findRoot(tree);
+    //start recursion from root at depth 1
+    return maxDepthHelper(tree, root, 1); 
+  }
+
+  //helper method for maxDepth(Map)
+  private static int maxDepthHelper(Map<String, List<String>> tree, String node, int depth) {
+    if (!tree.containsKey(node) || tree.get(node).isEmpty()) {
+      //leaf node, return current depth
+      return depth;
+    }
+    int maxDepth = depth;
+    for (String child : tree.get(node)) {
+      maxDepth = Math.max(maxDepth, maxDepthHelper(tree, child, depth + 1));
+    }
+    return maxDepth;
   }
 }
