@@ -1,5 +1,7 @@
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TreeProblems {
 
@@ -144,6 +146,16 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
+    // hashset for contains efficiency
+    // create a key set
+    Set<T> keys = new HashSet<>();
+    Set<T> values = new HashSet<>();
+
+    for (Map.Entry<T, List<T>> item : tree.entrySet()) {
+      keys.add(item.getKey());
+    }
+
+    // loop through keyset to see if each key is in value set 
     return null;
   }
 
