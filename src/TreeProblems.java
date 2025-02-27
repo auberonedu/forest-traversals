@@ -188,12 +188,12 @@ public class TreeProblems {
       return 0;
     }
     int maxDepth = 0;
-    if (root.children != null){
-      for (Node<T> child : root.children){
+
+    for (Node<T> child : root.children){
         maxDepth = Math.max(maxDepth, maxDepth(child));
-      }
     }
-    return maxDepth;
+
+    return 1 + maxDepth;
   }
 
   /*
