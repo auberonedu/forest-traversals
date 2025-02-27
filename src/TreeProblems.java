@@ -1,3 +1,4 @@
+import java.lang.classfile.components.ClassPrinter;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,13 @@ public class TreeProblems {
    If the root is null, do nothing.
    */
   public static <T> void postOrder(Node<T> root) {
+    if (root == null) return;
+
+    if (root.children == null) return;
+
+    for (var child : root.children) {
+      postOrder(child);
+    }
   }
 
   /*
