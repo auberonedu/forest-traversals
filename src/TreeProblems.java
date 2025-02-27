@@ -1,6 +1,8 @@
 import java.security.Key;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TreeProblems {
 
@@ -164,7 +166,21 @@ public class TreeProblems {
    * Hint: No recursion needed! Think about how you would do this by hand.
    */
   public static <T> T findRoot(Map<T, List<T>> tree) {
-    return null;
+    Set<T> nodes = tree.keySet();
+    Collection<List<T>> childNodes = tree.values();
+    boolean isRoot = true;
+    T root = null;
+    for(var node: nodes){
+      for(List<T> children: childNodes){
+        if (children.contains(node)){
+          isRoot = false;
+        }
+      }
+      if (isRoot == true){
+        root = node;
+      }
+    }
+    return root;
   }
 
   /*
