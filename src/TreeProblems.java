@@ -139,7 +139,19 @@ public class TreeProblems {
    Hint: There's a simple way to do this!
   */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
-    return -1;
+    // base case 
+    if (tree == null || tree.keySet() == null) return 0;
+
+    int counter = 0;
+
+    // handle
+    for (var key : tree.keySet()){
+      counter += key;
+    }
+    
+    // traverse
+
+    return counter;
   }
 
   /*
