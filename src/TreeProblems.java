@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -146,7 +147,11 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
-    return null;
+    if (tree == null) return null;
+    Map<T, Integer> parents = new HashMap<>();
+    for (var key : tree.keySet()) {
+      parents.put(key, 0);
+    }
   }
 
   /*
