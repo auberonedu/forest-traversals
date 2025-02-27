@@ -210,7 +210,20 @@ public class TreeProblems {
    
   */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+    if (root == null) return 0;
+    if (root.children == null) return 1;
+
+    int betterChild = 0;
+
+    // loop thorugh children, find highest child
+    for (var child : root.children){
+      int currentChildDepth = maxDepth(child);
+      if ( currentChildDepth > betterChild){
+        betterChild = currentChildDepth;
+      }
+      
+    }
+    return betterChild;
   }
 
   /*
