@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 public class TreeProblems {
 
@@ -28,6 +29,7 @@ public class TreeProblems {
    If the root is null, do nothing.
    */
   public static <T> void postOrder(Node<T> root) {
+
   }
 
   /*
@@ -72,7 +74,23 @@ public class TreeProblems {
    A null tree should return 0
   */
   public static int sumTree(Node<Integer> root) {
-    return -1;
+    int ret = 0;
+
+    Queue<Node<Integer>> que = new LinkedList<>();
+
+    Node<Integer> ptr = root;
+    que.add(ptr);
+
+    while(!que.isEmpty()) {
+      ptr = que.remove();
+      ret += ptr.value;
+
+      for(Node<Integer> n : ptr.children) {
+        que.add(n);
+      }
+    }
+
+    return ret;
   }
 
   /*
