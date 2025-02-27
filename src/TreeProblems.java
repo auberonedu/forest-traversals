@@ -1,7 +1,11 @@
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
+
+import javax.swing.tree.TreeNode;
 
 public class TreeProblems {
 
@@ -187,7 +191,25 @@ public class TreeProblems {
    
   */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+    if (root == null) return 0;
+    Queue<Node<T>> queue = new LinkedList<>();
+
+    int sum = 1;
+
+    queue.add(root);
+
+    while(!queue.isEmpty()) {
+      Node<T> current = queue.poll();
+
+      if (current == null) continue;
+
+      for (var child : root.children) {
+         maxDepth(child);
+         sum++;
+      }
+    }
+
+    return sum;
   }
 
   /*
