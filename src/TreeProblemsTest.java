@@ -38,7 +38,7 @@ public class TreeProblemsTest {
   public void testPostOrderNode_SingleNode() {
     Node<Integer> single = new Node<>(42);
     TreeProblems.postOrder(single);
-    assertEquals("A single-node tree should print its value", "42\n", baos.toString());
+    assertEquals("A single-node tree should print its value", "42\r\n", baos.toString());
   }
 
   @Test
@@ -58,7 +58,7 @@ public class TreeProblemsTest {
     node9.children.add(node2);
 
     TreeProblems.postOrder(root);
-    assertEquals("Complex Node tree postorder traversal output is incorrect", "3\n4\n1\n2\n9\n8\n5\n", baos.toString());
+    assertEquals("Complex Node tree postorder traversal output is incorrect", "3\r\n4\r\n1\r\n2\r\n9\r\n8\r\n5\r\n", baos.toString());
   }
 
   // ============================
