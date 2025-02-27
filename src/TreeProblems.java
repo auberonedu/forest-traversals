@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -127,6 +128,15 @@ public class TreeProblems {
    Hint: There's a simple way to do this!
   */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
+    if (tree == null) return 0;
+
+    Map<Integer, Integer> map = new HashMap<>();
+
+    
+
+    
+  
+
     return -1;
   }
 
