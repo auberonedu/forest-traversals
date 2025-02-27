@@ -28,6 +28,13 @@ public class TreeProblems {
    If the root is null, do nothing.
    */
   public static <T> void postOrder(Node<T> root) {
+      if(root == null) return;
+
+      for (var child: root.children) {
+        postOrder(child);
+      }
+
+      System.out.println(root.value);
   }
 
   /*
@@ -55,14 +62,7 @@ public class TreeProblems {
    5
    */
   public static <T> void postOrder(Map<T, List<T>> tree, T root) {
-    if (root == null) {
-      return;
-  }
-  for (Node<T> child : children) {
-      postOrder(child);
-
-  System.out.println(root.child);
-}
+ }
 
   /*
    sumTree (Node Version)
