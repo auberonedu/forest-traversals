@@ -1,3 +1,4 @@
+import java.security.Key;
 import java.util.List;
 import java.util.Map;
 
@@ -91,16 +92,20 @@ public class TreeProblems {
    * A null tree should return 0
    */
   public static int sumTree(Node<Integer> root) {
-    if (root == null) return 0;
-    if (root.children == null) return sumTreeHelper(root);
-    return sumTreeHelper(root) ;
+    if (root == null)
+      return 0;
+    if (root.children == null)
+      return sumTreeHelper(root);
+    return sumTreeHelper(root);
   }
 
-  private static int sumTreeHelper(Node<Integer> root){
+  private static int sumTreeHelper(Node<Integer> root) {
     int sum = 0;
-    if (root == null) return 0;
-    if (root.children == null) return root.value;
-    for(var child: root.children){
+    if (root == null)
+      return 0;
+    if (root.children == null)
+      return root.value;
+    for (var child : root.children) {
       sum += sumTreeHelper(child);
     }
     sum += root.value;
@@ -128,7 +133,14 @@ public class TreeProblems {
    * Hint: There's a simple way to do this!
    */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
-    return -1;
+    int sum = 0;
+
+    if (tree == null)
+      return 0;
+    for (Integer key : tree.keySet()) {
+      sum += key;
+    }
+    return sum;
   }
 
   /*
