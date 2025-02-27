@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -174,6 +175,19 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
+        
+    List<T> checkValues = new ArrayList<>();
+
+  for (var value : tree.values()) {
+    checkValues.addAll(value);
+  }
+
+    for (var key : tree.keySet()) {
+      if (!checkValues.contains(key)) {
+        return key;
+      }
+    }
+
     return null;
   }
 
