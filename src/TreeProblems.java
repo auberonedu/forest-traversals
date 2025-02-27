@@ -36,6 +36,8 @@ public class TreeProblems {
     for (var child : root.children) {
       postOrder(child);
     }
+    
+    System.out.println(root.value);
   }
 
   /*
