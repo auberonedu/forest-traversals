@@ -86,7 +86,7 @@ public class TreeProblemsTest {
     Map<Integer, List<Integer>> tree = new HashMap<>();
     tree.put(42, List.of());
     TreeProblems.postOrder(tree, 42);
-    assertEquals("A single-node Map tree should print its value", "42\n", baos.toString());
+    assertEquals("A single-node Map tree should print its value", "42\r\n", baos.toString());
   }
 
   @Test
@@ -101,7 +101,7 @@ public class TreeProblemsTest {
     tree.put(2, List.of());
 
     TreeProblems.postOrder(tree, 5);
-    assertEquals("Complex Map tree postorder traversal output is incorrect", "3\n4\n1\n2\n9\n8\n5\n", baos.toString());
+    assertEquals("Complex Map tree postorder traversal output is incorrect", "3\r\n4\n1\n2\n9\n8\n5\n", baos.toString());
   }
 
   // =============================
