@@ -170,16 +170,16 @@ public class TreeProblems {
     Set<T> nodes = tree.keySet();
     Collection<List<T>> childNodes = tree.values();
     Set<T> childSet = new HashSet<>();
-    for(List<T> childLists: childNodes){
+    for (List<T> childLists : childNodes) {
       childSet.addAll(childLists);
     }
     T root = null;
-    for(T node: nodes){
-      if (!childSet.contains(node)){
+    for (T node : nodes) {
+      if (!childSet.contains(node)) {
         root = node;
       }
     }
-    
+
     return root;
   }
 
@@ -204,7 +204,16 @@ public class TreeProblems {
    * 
    */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+    int lvls = 1;
+    if (root == null)
+      return 0;
+    if (root.children == null)
+      return 1;
+    for (var child : root.children) {
+      int childDepth = maxDepth(child);
+      lvls = Math.max(lvls, childDepth + 1);
+    }
+    return lvls;
   }
 
   /*
