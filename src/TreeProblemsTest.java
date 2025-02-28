@@ -194,7 +194,7 @@ public class TreeProblemsTest {
     tree.put(5, List.of());
     tree.put(8, List.of());
     tree.put(9, List.of());
-
+    
     assertEquals("Sum of nodes in a complex Map tree is incorrect", 44, TreeProblems.sumTree(tree));
   }
 

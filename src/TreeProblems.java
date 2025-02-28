@@ -1,6 +1,9 @@
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TreeProblems {
 
@@ -125,6 +128,28 @@ public class TreeProblems {
    Hint: There's a simple way to do this!
   */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
+    if (tree == null || tree.isEmpty()) {
+      return 0;
+  }
+  
+  int sum = 0;
+
+  int treeRoot = findRoot(tree);
+
+  sum += treeRoot;
+
+  for (Map.Entry<Integer, List<Integer>> entry : tree.entrySet()) {
+    
+
+    for (Integer childNode : entry.getValue()) {
+      System.out.print(sum);
+      sum += childNode;
+    }
+
+        
+  }
+  return sum;
+}
 
 
 
@@ -148,8 +173,25 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
-    return null;
+    Set<T> childNodes = new HashSet<>();
+
+    if (tree.size() == 1) {
+      return tree.keySet().iterator().next();
   }
+
+    for (List<T> children : tree.values()) {
+        childNodes.addAll(children);
+    }
+
+    for (T parentNode : tree.keySet()) {
+        if (!childNodes.contains(parentNode)) {
+            return parentNode;  
+      } 
+    }
+    return null;  // Return a default value (though this should never be reached)
+    
+}
+
 
   /*
    maxDepth (Node Version)
