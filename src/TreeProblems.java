@@ -182,7 +182,17 @@ public class TreeProblems {
    
   */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+    if (root == null) return 0;
+
+    int maxDepth = 0;
+
+    for (Node<T> child : root.children) {
+        int childDepth = maxDepth(child);
+        if (childDepth > maxDepth) {
+            maxDepth = childDepth;
+        }
+    }
+    return 1 + maxDepth;
   }
 
   /*
