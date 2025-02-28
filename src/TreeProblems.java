@@ -224,17 +224,18 @@ public class TreeProblems {
           
     String root = findRoot(tree);
     return maxDepthHelper(tree, root, 1);
-      }
+  }
           
-    private static int maxDepthHelper(Map<String, List<String>> tree, String node, int depth){
+  private static int maxDepthHelper(Map<String, List<String>> tree, String node, int depth){
     if (!tree.containsKey(node) || tree.get(node).isEmpty()){
       return depth;
-        }
+    }
+
     int maxDepth = depth;
     for (String child : tree.get(node)){
-    maxDepth = Math.max(maxDepth, maxDepthHelper(tree, child, depth +1 ));
-      }
-    return maxDepth;
-      }
+      maxDepth = Math.max(maxDepth, maxDepthHelper(tree, child, depth +1 ));
     }
+    return maxDepth;
+  }
+}
     
