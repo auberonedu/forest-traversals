@@ -234,8 +234,6 @@ public class TreeProblems {
     if (tree == null) return 0;
 
     String root = findRoot(tree);
-    
-    if (root == null) return 0;
 
     return maxDepthHelper(tree, root);
   }
