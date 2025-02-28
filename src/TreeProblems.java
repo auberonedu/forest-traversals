@@ -223,6 +223,15 @@ public class TreeProblems {
   }
 
   public static int maxDepthHelper(Map<String, List<String>> tree, String node) {
+      List<String> childNodes = tree.get(node); // Make list of children
+      int maxDepth = 0;
 
+    for (String child : childNodes) {
+        int childDepth = maxDepthHelper(tree, child);
+        if (childDepth > maxDepth) {
+            maxDepth = childDepth;
+        }
+    }
+    return 1 + maxDepth;
   }
 }
