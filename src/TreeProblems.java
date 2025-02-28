@@ -126,8 +126,9 @@ public class TreeProblems {
     }
     
     int sum = 0;
+
     for (var key : tree.keySet()) {
-        sum += key;
+      sum += key;
     }
     
     return sum;
@@ -158,12 +159,12 @@ public class TreeProblems {
     Set<T> allChildren = new HashSet<>();
 
     for (var entry : tree.entrySet()) {
-        allChildren.addAll(entry.getValue());
+      allChildren.addAll(entry.getValue());
     }
     for (var key : tree.keySet()) {
-        if (!allChildren.contains(key)) {
-            return key;
-        }
+      if (!allChildren.contains(key)) {
+        return key;
+      }
     }
     return null;
   }
@@ -189,16 +190,16 @@ public class TreeProblems {
   public static <T> int maxDepth(Node<T> root) {
     if (root == null) {
       return 0;
-  }
+    }
   
-  int maxChildDepth = 0;
+    int maxChildDepth = 0;
 
-  for (var child : root.children) {
-      int childDepth = maxDepth(child);
-      maxChildDepth = Math.max(maxChildDepth, childDepth);
-  }
+    for (var child : root.children) {
+        int childDepth = maxDepth(child);
+        maxChildDepth = Math.max(maxChildDepth, childDepth);
+    }
   
-  return maxChildDepth + 1;
+    return maxChildDepth + 1;
   }
 
   /*
