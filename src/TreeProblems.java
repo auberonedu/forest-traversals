@@ -93,7 +93,7 @@ public class TreeProblems {
     if (root == null) return 0;
 
     int sum = root.value;
-
+ 
     for (var child: root.children) {
       sum+= sumTree(child);
     }
