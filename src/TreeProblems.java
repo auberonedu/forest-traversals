@@ -1,5 +1,6 @@
 import java.security.Key;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -168,18 +169,17 @@ public class TreeProblems {
   public static <T> T findRoot(Map<T, List<T>> tree) {
     Set<T> nodes = tree.keySet();
     Collection<List<T>> childNodes = tree.values();
-    boolean isRoot = true;
+    Set<T> childSet = new HashSet<>();
+    for(List<T> childLists: childNodes){
+      childSet.addAll(childLists);
+    }
     T root = null;
-    for(var node: nodes){
-      for(List<T> children: childNodes){
-        if (children.contains(node)){
-          isRoot = false;
-        }
-      }
-      if (isRoot == true){
+    for(T node: nodes){
+      if (!childSet.contains(node)){
         root = node;
       }
     }
+    
     return root;
   }
 
