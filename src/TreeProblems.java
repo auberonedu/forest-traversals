@@ -40,7 +40,7 @@ public class TreeProblems {
   }
 
   /*
-   postOrder (Node Version)
+   postOrder (Map Version)
    -----------
    Given the root of a tree print out the values of the nodes in post-order.
    Print each value on a separate line.
@@ -64,6 +64,15 @@ public class TreeProblems {
    5
    */
   public static <T> void postOrder(Map<T, List<T>> tree, T root) {
+    if (tree == null || root == null || !tree.containsKey(root)) {
+      return;
+    }
+
+    for (T child : tree.get(root)) {
+      postOrder(tree, child);
+    }
+
+    System.out.println(root);
   }
 
   /*
