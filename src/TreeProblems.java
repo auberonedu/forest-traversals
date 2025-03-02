@@ -1,5 +1,4 @@
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TreeProblems {
 
@@ -155,6 +154,19 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
+    Set<T> children = new HashSet<>();
+    for (Map.Entry<T, List<T>> entry : tree.entrySet()) {
+      for (T child : entry.getValue()) {
+        children.add(child);
+      }
+    }
+
+    for (T possibleRoot : tree.keySet()) {
+      if (!children.contains(possibleRoot)) {
+        return possibleRoot;
+      }
+    }
+
     return null;
   }
 
