@@ -126,14 +126,15 @@ public class TreeProblems {
   */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
     if (tree == null) return 0;
-  
-    //List<T> children = tree.get(root);
 
-    // for(T child : children) {
-    //   postOrder(tree, child);
-    // }  
-  
-    return -1;
+    int count = 0;
+    
+    //adding all keys to count
+    for (int key : tree.keySet()) {
+      count += key;
+    }
+
+    return count;
   }
 
   /*
