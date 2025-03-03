@@ -1,5 +1,7 @@
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TreeProblems {
 
@@ -27,7 +29,20 @@ public class TreeProblems {
 
    If the root is null, do nothing.
    */
+
+   // left right root
   public static <T> void postOrder(Node<T> root) {
+    // if null return nothing
+    if(root == null || root.children == null) return;
+
+    // this grabs the child of each 'root' [which is the list of elements]
+    // it then puts it into this loop below to navigatate itteratively until the bottom 
+  
+    for(var child : root.children){ // moving down to the very bottom in order that it came in [the bottom of the first child, then the next etc.]
+      postOrder(child);
+    }
+    //the it prints out from the bottom and then works it way back up.
+    System.out.println(root.value);
   }
 
   /*
@@ -55,7 +70,19 @@ public class TreeProblems {
    5
    */
   public static <T> void postOrder(Map<T, List<T>> tree, T root) {
+    if(tree == null || !tree.containsKey(root)){
+      return;
+    }
+
+    // Access the list of children for the current root node and recursively process each child 
+    for(var child : tree.get(root)){
+      postOrder(tree, child);
+    }
+
+    System.out.println(root);
+
   }
+
 
   /*
    sumTree (Node Version)
@@ -72,7 +99,18 @@ public class TreeProblems {
    A null tree should return 0
   */
   public static int sumTree(Node<Integer> root) {
-    return -1;
+        // if null return nothing
+      if(root == null) return 0;
+
+        // this grabs the child of each 'root' [which is the list of elements]
+        // it then puts it into this loop below to navigatate itteratively until the bottom 
+        int sum = root.value; 
+
+      for(Node<Integer> child : root.children){ // moving down to the very bottom in order that it came in [the bottom of the first child, then the next etc.]
+          sum += sumTree(child);
+      }
+        //the it prints out from the bottom and then works it way back up.
+      return sum;
   }
 
   /*
@@ -95,7 +133,23 @@ public class TreeProblems {
    Hint: There's a simple way to do this!
   */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
-    return -1;
+    if(tree == null){
+      return 0;
+    }
+
+    int sum = 0;
+
+    //wow. Kind of anti climactic
+    for(var key : tree.keySet()){
+      sum += key;
+    }
+
+
+
+
+
+
+    return sum;
   }
 
   /*
@@ -118,6 +172,9 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
+    Set<Integer> roots = new HashSet<Integer>();
+
+  
     return null;
   }
 
@@ -140,7 +197,24 @@ public class TreeProblems {
    
   */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+
+    if(root == null) return 0;
+
+    if(root.children.isEmpty()){
+
+      return 1;
+
+    }
+
+    int maxChildDepth = 0;
+
+    for (Node<T> child : root.children) {
+
+      maxChildDepth = Math.max(maxChildDepth, maxDepth(child));
+
+    }
+
+    return 1 + maxChildDepth;
   }
 
   /*
