@@ -1,6 +1,8 @@
 import java.lang.classfile.components.ClassPrinter;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TreeProblems {
 
@@ -91,7 +93,16 @@ public class TreeProblems {
    A null tree should return 0
   */
   public static int sumTree(Node<Integer> root) {
-    return -1;
+    if (root == null) return 0;
+
+    int count = root.value;
+
+    for (var child : root.children) {
+      int cCount= sumTree(child);
+      count += cCount;
+    }
+    
+    return count;
   }
 
   /*
@@ -114,6 +125,14 @@ public class TreeProblems {
    Hint: There's a simple way to do this!
   */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
+    if (tree == null) return 0;
+  
+    //List<T> children = tree.get(root);
+
+    // for(T child : children) {
+    //   postOrder(tree, child);
+    // }  
+  
     return -1;
   }
 
@@ -124,6 +143,7 @@ public class TreeProblems {
    find the root of the tree. The root is the node with no parents.
    Example:
    If the tree is represented as:
+    key     values
      20 -> [40]
      8  -> []
      30 -> []
@@ -137,6 +157,18 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
+    Set<T> children = new HashSet();
+
+    // Collect the child nodes/adding to the children set
+    for (List<T> list : tree.values()) {
+      children.addAll(list);
+    }
+
+    for (T key : tree.keySet()) {
+      if (!children.contains(key)) {
+        return key;
+      }
+    }
     return null;
   }
 
