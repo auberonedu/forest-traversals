@@ -89,6 +89,8 @@ public class TreeProblems {
    A null tree should return 0
   */
   public static int sumTree(Node<Integer> root) {
+    if (root == null) return 0;
+
     int ret = 0;
 
     Queue<Node<Integer>> que = new LinkedList<>();
@@ -131,13 +133,20 @@ public class TreeProblems {
     if (tree == null) return 0;
 
     Map<Integer, Integer> map = new HashMap<>();
+    int sum = 0;
 
-    
+    for (Map.Entry<Integer, List<Integer>> t : tree.entrySet()) {
+      map.put(t.getKey(), map.getOrDefault(t.getKey(), 0) + 1);
+      for (int child : t.getValue()) {
+        map.put(child, map.getOrDefault(child, 0) + 1);
+      }
+    }
 
-    
-  
+    for (int key : tree.keySet()) {
+      sum += key;
+    }
 
-    return -1;
+    return sum;
   }
 
   /*
@@ -182,7 +191,14 @@ public class TreeProblems {
    
   */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+    if (root == null) return 0;
+    int maxLevel = 0;
+
+    for (Node<T> child : root.children) {
+      maxLevel = Math.max(maxLevel, maxDepth(child));
+    }
+
+    return maxLevel + 1;
   }
 
   /*
