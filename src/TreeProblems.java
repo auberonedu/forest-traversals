@@ -217,13 +217,11 @@ public class TreeProblems {
 
     // loop thorugh children, find highest child
     for (var child : root.children){
-      int currentChildDepth = maxDepth(child);
-      if ( currentChildDepth > betterChild){
-        betterChild = currentChildDepth;
-      }
+      betterChild = Math.max(betterChild, maxDepth(child));
       
     }
-    return betterChild;
+
+    return betterChild + 1;
   }
 
   /*
