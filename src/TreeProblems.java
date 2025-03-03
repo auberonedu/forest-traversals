@@ -180,9 +180,9 @@ public class TreeProblems {
    the longest path from the root down to the farthest leaf. The root is at depth 1. If the tree is null, return 0.
    Example:
    For a tree structured as:
-          A
+          A 
        /  |  \
-      B   E   C
+      B   E   C 
       |      / \
       E     D   Q
              \ 
@@ -192,7 +192,13 @@ public class TreeProblems {
    
   */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+    if (root == null) return 0;
+
+    int depth = 0;
+    for (Node<T> current : root.children) {
+      depth = Math.max(depth, maxDepth(current));
+    }
+    return depth + 1;
   }
 
   /*
