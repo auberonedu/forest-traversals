@@ -175,16 +175,32 @@ public class TreeProblems {
     Set<T> root = new HashSet<T>(tree.keySet());
     Set<T> nonRoots = new HashSet<>();
    
+    
     for(var child : tree.values()){
       //addAll to add mult things to the collection
       nonRoots.addAll(child);
 
     }
 
-    root.remove(nonRoots);
+    //DO REMOVE ALL 
+    root.removeAll(nonRoots);
   
     return root.iterator().next();
+  
     
+    // remember - a key can never be a child. 
+    // 20 -> [40]
+    //  8  -> []
+    //  30 -> []
+    //  10 -> [20, 30, 99]
+    //  40 -> []
+    //  99 -> [8]
+    // 4 - > [20]
+
+    //my code essentially puts all the keys into a set
+    // then puts all the children into another
+    // then removes all children from the key set (root)
+    // and if there is anything left that HAS to be the root 
   }
 
   /*
@@ -245,6 +261,30 @@ public class TreeProblems {
    Hint: Use findRoot to start. Then, make a recursive helper method.
   */
   public static int maxDepth(Map<String, List<String>> tree) {
-    return -1;
+    if(tree == null) return 0;
+    var root = findRoot(tree);
+
+    // now I want to traverse it down 
+    if(root ==null) return 0;
+
+    return maxDepthHelper(tree, root);
   }
+
+  private static int maxDepthHelper(Map<String, List<String>> tree, String root){
+    if(!tree.containsKey(root) || tree.get(root).isEmpty() || tree == null){
+      return 1;
+    }
+
+    int maxDepthOfChildren = 0;
+
+    for (var child : tree.get(root)){
+      // this is going to be traversing
+      // Math.max - catches the deepest branch no matter what.
+      maxDepthOfChildren = Math.max(maxDepthOfChildren, maxDepthHelper(tree, child));
+    }
+
+    //at the end of each revursive call - it adds plus one. This how it increment
+    return 1 + maxDepthOfChildren;
+  }
+  
 }
