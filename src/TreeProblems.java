@@ -128,7 +128,13 @@ public static <T> void postOrder(Map<T, List<T>> tree, T root) {
    Hint: There's a simple way to do this!
   */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
-    return -1;
+    int sum = 0;
+
+    for(Integer node : tree.keySet()){
+      sum += node;
+    }
+
+    return sum;
   }
 
   /*
