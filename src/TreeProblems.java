@@ -169,7 +169,28 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
-    return null;
+    Map<T, Integer> map = new HashMap<>();
+
+    // We want initialize all parent nodes with 0 that are inside the tree.
+    for (T parent : tree.keySet()) {
+      map.put(parent, 0);
+    }
+
+    // Counting the occurrences of the child nodes
+    for (List<T> children : tree.values()) {
+      for (T child : children) {
+        map.put(child, map.getOrDefault(child, 0) + 1);
+      }
+    }
+
+    // Search through the map to find the root
+    for (Map.Entry<T, Integer> findTheRoot : map.entrySet()) {
+      if (findTheRoot.getValue() == 0) {
+        return findTheRoot.getKey(); // returning this will get the root
+      }
+    }
+    
+    return null; 
   }
 
   /*
