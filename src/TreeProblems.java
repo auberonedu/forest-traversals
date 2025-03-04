@@ -95,7 +95,17 @@ public static <T> void postOrder(Map<T, List<T>> tree, T root) {
    A null tree should return 0
   */
   public static int sumTree(Node<Integer> root) {
-    return -1;
+    if(root == null){
+      return 0;
+    }
+
+    int sum = root.value;
+
+    for(Node<Integer> child : root.children){
+      sum += sumTree(child);
+    }
+
+    return sum;
   }
 
   /*
