@@ -1,6 +1,8 @@
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TreeProblems {
 
@@ -156,9 +158,26 @@ public static <T> void postOrder(Map<T, List<T>> tree, T root) {
 
    Hint: No recursion needed! Think about how you would do this by hand.
   */
-  public static <T> T findRoot(Map<T, List<T>> tree) {
-    return null;
-  }
+public static <T> T findRoot(Map<T, List<T>> tree) {
+    // set to store all child nodes
+    Set<T> childNodes = new HashSet<>();
+
+    // loop through the tree, add all child nodes to the set
+    for (List<T> children : tree.values()) {
+        childNodes.addAll(children);
+    }
+
+    // the root is the one key that is not a child
+    for (T parent : tree.keySet()) {
+        if (!childNodes.contains(parent)) {
+            return parent;
+        }
+    }
+
+    // if no root is found(should not happen since tree is non-null)
+    return null; 
+}
+
 
   /*
    maxDepth (Node Version)
