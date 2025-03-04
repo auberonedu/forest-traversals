@@ -198,7 +198,25 @@ public static <T> T findRoot(Map<T, List<T>> tree) {
    
   */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+     //base case
+     if(root == null){
+      return 0;
+     }
+
+     if(root.children.isEmpty()){
+      return 1;
+     }
+
+
+     int maxDepth = 0;
+
+     for(Node<T> children : root.children){
+      maxDepth = Math.max(maxDepth, maxDepth(children));
+     }
+
+     // add 1 for the current node
+     return maxDepth + 1;
+
   }
 
   /*
