@@ -172,10 +172,19 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
-    Set<Integer> roots = new HashSet<Integer>();
+    Set<T> root = new HashSet<T>(tree.keySet());
+    Set<T> nonRoots = new HashSet<>();
+   
+    for(var child : tree.values()){
+      //addAll to add mult things to the collection
+      nonRoots.addAll(child);
 
+    }
+
+    root.remove(nonRoots);
   
-    return null;
+    return root.iterator().next();
+    
   }
 
   /*
