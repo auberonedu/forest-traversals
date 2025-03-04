@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class TreeProblems {
       return;
     }
 
-    for(var child : root.children){
+    for(Node<T> child : root.children){
       postOrder(child);
     }
 
@@ -64,23 +65,20 @@ public class TreeProblems {
    8
    5
    */
-  public static <T> void postOrder(Map<T, List<T>> tree, T root) {
-
-    // base case
-    if(root == null || !tree.containsKey(root)){
-      return;
+public static <T> void postOrder(Map<T, List<T>> tree, T root) {
+    if (root == null) {
+        return;
     }
 
-    List<T> childrenList = tree.get(root);
+    // avoids a null pointer exception
+    List<T> childrenList = tree.getOrDefault(root, Collections.emptyList());
 
-    for(var child : childrenList){
-      postOrder(tree, child);
+    for (T child : childrenList) {
+        postOrder(tree, child);
     }
 
     System.out.println(root);
-
-  
-  }
+}
 
   /*
    sumTree (Node Version)
